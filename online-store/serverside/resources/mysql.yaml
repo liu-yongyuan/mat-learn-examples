@@ -1,0 +1,20 @@
+mysql:
+    development:
+        host: "localhost"
+        user: "root"
+        password: "dev-password"
+        database: "dev_database"
+        waitForConnections: true
+        connectionLimit: 10
+        connectTimeout: 10000
+        queueLimit: 0
+
+    production:
+        host: "prod-db-host"
+        user: "prod-user"
+        password: "prod-password"
+        database: "prod_database"
+        waitForConnections: true
+        connectionLimit: 20
+        connectTimeout: 10000
+        queueLimit: 0

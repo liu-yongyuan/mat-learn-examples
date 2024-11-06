@@ -1,0 +1,22 @@
+{
+  "name": "online-store",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Example for online-store, sql in docker-compose-example/mysql-examples/mysql-online_store-sqls.sql",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "node.js"
+  ],
+  "author": "liu-yongyuan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "js-yaml": "^4.1.0",
+    "mysql2": "^3.11.4"
+  }
+}
