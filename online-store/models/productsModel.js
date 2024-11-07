@@ -1,5 +1,5 @@
 import { promisePool } from "../dbPool.js";
-
+import logger from "../utils/logger.js";
 /**
  * get all products
  * @returns
@@ -19,6 +19,7 @@ export const get = async (id) => {
             "select * from products where product_id = ?",
             id,
         );
+        logger.info(`get products by id: ${id}`);
         return rows?.[0] ?? null;
     } catch (e) {
         return e;
