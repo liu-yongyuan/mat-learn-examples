@@ -2,11 +2,12 @@ import fs from "fs";
 import yaml from "js-yaml";
 import express from "express";
 import dotenv from "dotenv";
+import errorHandler from "./utils/errorHandler.js";
 
 // Load environment variables from .env file
 dotenv.config();
 
-console.log(process.env.NODE_ENV);
+console.log(`[app] NODE_ENV:${process.env.NODE_ENV}`);
 
 const app = express();
 
@@ -33,7 +34,12 @@ app.use(express.json());
 
 // Example route
 app.get(`${baseUrl}/health`, (req, res) => {
-    res.json({ message: "Server is running fine" });
+    res.json({ message: "running" });
+});
+
+// Example route with Error
+app.get(`${baseUrl}/error`, (req, res) => {
+    throw new Error("This is a test error!");
 });
 
 // Start the server
@@ -41,10 +47,9 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
 
-// Global error handler
-app.use((err, req, res, next) => {
-    console.error("Error:", err); // Log the error
-    res.status(500).json({ error: "Something went wrong!" }); // Respond with a 500 error
-});
+// Add the error handler middleware after all routes
+app.use(errorHandler);
 
 export { app };
+
+export { serverConfig };

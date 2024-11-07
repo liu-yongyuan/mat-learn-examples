@@ -1,13 +1,14 @@
 server:
     # port: 3000
     # env: "development"
-    logLevel: "info"
-    baseUrl: "/api/v1"
+    # logLevel: "info"
 
     development:
         port: 3000
         logLevel: "debug"
+        baseUrl: "/api/v1"
 
     production:
         port: 8080
         logLevel: "warn"
+        baseUrl: "/api/v1"
