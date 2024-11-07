@@ -1,26 +1,5 @@
-import express from "express";
-import mysql from "mysql2";
-
-const app = express();
-const port = 3000;
-
-// Middleware to parse JSON request bodies
-app.use(express.json());
-
-// Create a MySQL connection pool
-const pool = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "my-secret-pw",
-    database: "online_store",
-    waitForConnections: true,
-    connectionLimit: 10,
-    connectTimeout: 100,
-    queueLimit: 0,
-});
-
-// Promisify pool query for async/await
-const promisePool = pool.promise();
+import { app } from "./app.js";
+import { promisePool } from "./dbPool.js";
 
 //  Route to get all products
 app.get("/products", async (req, res) => {
@@ -103,17 +82,6 @@ app.delete("/products/:id", async (req, res) => {
         console.error(err);
         res.status(500).json({ error: "Database query failed" });
     }
-});
-
-// Global error handler
-app.use((err, req, res, next) => {
-    console.error("Error:", err); // Log the error
-    res.status(500).json({ error: "Something went wrong!" }); // Respond with a 500 error
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
 });
 
 // Handle uncaught exceptions

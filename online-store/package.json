@@ -5,7 +5,8 @@
   "description": "Example for online-store, sql in docker-compose-example/mysql-examples/mysql-online_store-sqls.sql",
   "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [
     "express",
@@ -15,6 +16,7 @@
   "author": "liu-yongyuan",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "js-yaml": "^4.1.0",
     "mysql2": "^3.11.4"
