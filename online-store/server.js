@@ -23,3 +23,5 @@ process.on("unhandledRejection", (reason, promise) => {
     // Optionally, log the rejection or send alerts
     // Do not call process.exit() to prevent the process from exiting
 });
+
+export default app;

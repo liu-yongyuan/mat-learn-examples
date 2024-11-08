@@ -8,6 +8,11 @@ server:
         logLevel: "debug"
         baseUrl: "/api/v1"
 
+    test:
+        port: 3000
+        logLevel: "debug"
+        baseUrl: "/api/v1"
+
     production:
         port: 8080
         logLevel: "warn"

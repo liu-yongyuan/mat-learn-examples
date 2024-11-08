@@ -2,6 +2,13 @@ import Joi from "joi";
 
 // Example validation schemas
 const schemas = {
+    // Testing Schema for validating user registration data
+    userRegistration: Joi.object({
+        username: Joi.string().min(3).max(30).required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().min(8).required(),
+    }),
+
     // Schema for validating product data
     products: Joi.object({
         name: Joi.string().min(3).max(100).required(),
