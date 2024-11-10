@@ -2,12 +2,13 @@ import { app } from "./app.js";
 import logger from "./utils/logger.js";
 import requestLogger from "./middleware/requestLogger.js";
 import productsRoute from "./routes/productsRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 app.use(requestLogger);
 
 // define routes
+app.use(authRoutes);
 app.use(productsRoute);
-
 
 // Handle uncaught exceptions
 process.on("uncaughtException", (err) => {

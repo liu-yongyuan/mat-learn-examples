@@ -52,4 +52,4 @@ app.use(errorHandler);
 
 export { app };
 
-export { serverConfig };
+export { serverConfig, baseUrl };

@@ -61,3 +61,8 @@ innodb_flush_log_at_trx_commit = 2
 =========> GAP <=========
 
 mysql-sql.example.sql
+
+
+=========> GAP <=========
+docker exec -it mysql-container mysql -u root -p -h 127.0.0.1
+my-secret-pw

@@ -9,7 +9,7 @@ server:
         baseUrl: "/api/v1"
 
     test:
-        port: 3000
+        port: 3010
         logLevel: "debug"
         baseUrl: "/api/v1"
 
