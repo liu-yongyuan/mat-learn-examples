@@ -5,7 +5,7 @@
   "description": "Example for online-store, sql in docker-compose-example/mysql-examples/mysql-online_store-sqls.sql",
   "private": "true",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --detectOpenHandles",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "start": "node server.js"
   },
   "keywords": [

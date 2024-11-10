@@ -1,11 +1,5 @@
 import express from "express";
-import {
-    deleteProducstById,
-    getProductsById,
-    insertProductsAndGetId,
-    getAllProducts,
-    updateProductsById,
-} from "../controllers/productsController.js";
+import { deleteProducstById, getProductsById, insertProductsAndGetId, getAllProducts, updateProductsById } from "../controllers/productsController.js";
 import { serverConfig } from "../app.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
@@ -18,16 +12,12 @@ router.get(`${serverConfig.baseUrl}/products`, getAllProducts);
 router.get(`${serverConfig.baseUrl}/products/:id`, getProductsById);
 
 // Route to insert an product
-router.post(
-    `${serverConfig.baseUrl}/products`,
-    authMiddleware,
-    insertProductsAndGetId,
-);
+router.post(`${serverConfig.baseUrl}/products`, authMiddleware, insertProductsAndGetId);
 
 // Route to update an existing product
-router.put(`${serverConfig.baseUrl}/products/:id`, updateProductsById);
+router.put(`${serverConfig.baseUrl}/products/:id`, authMiddleware, updateProductsById);
 
 // Route to delete a product
-router.delete(`${serverConfig.baseUrl}/products/:id`, deleteProducstById);
+router.delete(`${serverConfig.baseUrl}/products/:id`, authMiddleware, deleteProducstById);
 
 export default router;
