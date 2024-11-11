@@ -41,12 +41,13 @@ An online store application built with Node.js, Express, MySQL, and Docker. This
    cd mat-learn-examples/online-store
    ```
 
-2.Install dependencies:
+
+2. Install dependencies:
     ```
     npm install
     ```
 
-3.Running Tests
+3. Running Tests
     ```bash
     npm test
     ```
