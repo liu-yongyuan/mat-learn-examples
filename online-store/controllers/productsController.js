@@ -53,10 +53,7 @@ export const updateProductsById = async (req, res) => {
     try {
         const { id } = req.params;
         const products = Object.assign({ product_id:id }, req.body);
-        const count = await update(products);
-        if (Object.is(count, 0)) {
-            return res.status(404).json({ error: "Product not found" });
-        }
+        await update(products);
         res.json({ message: "Product updated successfully" });
     } catch (e) {
         console.error(err);
