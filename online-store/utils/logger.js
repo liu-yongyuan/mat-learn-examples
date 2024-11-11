@@ -5,10 +5,24 @@ dotenv.config();
 // Define log format
 const logFormat = format.combine(
     format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    format.printf(
-        ({ timestamp, level, message }) =>
-            `${timestamp} [${level.toUpperCase()}]: ${message}`,
-    ),
+    format.printf(({ timestamp, level, message, ...metadata }) => {
+        let log = `${timestamp} [${level.toUpperCase()}]: ${message}`;
+        if (metadata) {
+            // Check if there's any splat metadata
+            if (metadata[Symbol.for("splat")]) {
+                // Combine the splat metadata arguments into the log message
+                log += " - " + metadata[Symbol.for("splat")].map((arg) => JSON.stringify(arg)).join(" ");
+            }
+
+            // If there are other metadata, add them to the log message
+            for (const key in metadata) {
+                if (key !== Symbol.for("splat")) {
+                    log += ` - ${key}: ${JSON.stringify(metadata[key])}`;
+                }
+            }
+        }
+        return log;
+    }),
 );
 
 // Initialize the logger

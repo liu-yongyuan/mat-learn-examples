@@ -25,5 +25,5 @@ beforeAll(async () => {
     // Store the token for future use in protected route tests
     global.token = res.body.token;
 
-    logger.info(`login success, get the token: ${global.token}, go to the next`);
+    logger.info(`login success`, `get the token`, { token: global.token });
 });
