@@ -42,10 +42,13 @@ app.get(`${baseUrl}/error`, (req, res) => {
     throw new Error("This is a test error!");
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+// To avoid duplicate port listening during Jest execution.
+if (process.env.NODE_ENV !== "test") {
+    // Start the server
+    app.listen(port, () => {
+        console.log(`Server running at http://localhost:${port}`);
+    });
+}
 
 // Add the error handler middleware after all routes
 app.use(errorHandler);

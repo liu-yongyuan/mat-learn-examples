@@ -40,7 +40,7 @@ describe("productes test", () => {
         productId = res.body.productId;
     });
 
-    it("shoud find newed product", async () => {
+    it("should find newed product", async () => {
         const res = await request(app).get(`${baseUrl}/products/${productId}`);
 
         // Check status code
@@ -66,7 +66,7 @@ describe("productes test", () => {
 
         expect(res.body.message).toBe("Product updated successfully");
     });
-    
+
     it("should delete product", async () => {
         const res = await request(app).delete(`/api/v1/products/${productId}`).set("Authorization", `Bearer ${global.token}`);
 
