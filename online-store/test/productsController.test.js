@@ -57,7 +57,6 @@ describe(`GET ${baseUrl}/products/:id`, () => {
 
 describe(`PUT ${baseUrl}/products/:id`, () => {
     it("should update product", async () => {
-        console.log('productId is : ',productId);
         let date = new Date();
         const products = {
             name: `[Jest][testing][update]SmartPC ${date.toLocaleDateString()}T${date.toLocaleTimeString()}`,

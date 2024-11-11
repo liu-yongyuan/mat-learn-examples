@@ -1,3 +1,4 @@
+import { deleteProducOwnership, insertProductOwnership } from "../models/productOwnershipModel.js";
 import {
     deleteById,
     get,
@@ -38,10 +39,11 @@ export const insertProductsAndGetId = async (req, res) => {
             return res.status(400).json({ errors }); // Send validation errors as response
         }
 
-        const id = await insert(req.body);
+        const productId = await insert(req.body);
+        await insertProductOwnership(productId, req.user.customer_id)
         res.status(201).json({
             message: "Product added successfully",
-            productId: id,
+            productId,
         });
     } catch (e) {
         console.error(e);
@@ -69,6 +71,7 @@ export const deleteProducstById = async (req, res) => {
         if (Object.is(count, 0)) {
             return res.status(404).json({ error: "Product not found" });
         }
+        await deleteProducOwnership(id, req.user.customer_id);
         res.json({ message: "Product deleted successfully" });
     } catch (e) {
         console.error(err);
