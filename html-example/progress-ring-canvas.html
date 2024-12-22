@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Ring with Canvas</title>
+  <style>
+    .progress-box{
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    .progress-ring__text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      color: #4caf50;
+    }
+    canvas {
+      display: block;
+      /* margin: 50px auto; */
+      background-color: #f3f3f3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-box">
+    <div class="progress-ring__text">75%</div>
+    <canvas id="progress-ring" width="120" height="120"></canvas>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('progress-ring');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 50;
+    const lineWidth = 15;
+    const startAngle = -Math.PI / 2;
+    const endAngle = startAngle + (Math.PI * 2 * 0.75); // 75% progress
+
+    // Background ring
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = '#e6e6e6';
+    ctx.stroke();
+
+    // Progress ring
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = '#4caf50';
+    ctx.stroke();
+  </script>
+</body>
+</html>

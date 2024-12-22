@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Ring</title>
+  <style>
+    .progress-box{
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    .progress-ring {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+
+    .progress-ring__circle {
+      fill: transparent;
+      stroke: #d2d3d4;
+      stroke-width: 10;
+    }
+
+    .progress-ring__circle--progress {
+      stroke: #4caf50;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+    .progress-ring__text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      fill: #4caf50;
+  }
+  </style>
+</head>
+<body>
+  <div class="progress-box">
+    <svg class="progress-ring" width="120" height="120">
+      <circle class="progress-ring__circle" stroke-width="4" r="52" cx="60" cy="60"/>
+      <circle class="progress-ring__circle progress-ring__circle--progress" stroke-width="4" r="52" cx="60" cy="60"/>
+    </svg>
+    <div class="progress-ring__text">35%</div>
+  </div>
+  
+
+  <script>
+    function setProgress(percent) {
+      const circle = document.querySelector('.progress-ring__circle--progress');
+      const radius = circle.r.baseVal.value;
+      const circumference = 2 * Math.PI * radius;
+
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = circumference;
+
+      const offset = circumference - (percent / 100 * circumference);
+      circle.style.strokeDashoffset = offset;
+    }
+
+    setProgress(35); // Set the progress to 75%
+  </script>
+</body>
+</html>
